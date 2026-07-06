@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Living on Anarchist Mountain BC | anarchistliving.ca</title>
+<meta name="description" content="Anarchist Mountain sits above Osoyoos — elevation, acreage, dark skies, and STR rules that don't apply inside town limits. An honest guide from Pat Miazga, a REALTOR® who lives here."/>
+<meta property="og:title" content="Anarchist Mountain BC | anarchistliving.ca"/>
+<meta property="og:description" content="Elevation. Acreage. Dark skies. Views that drop to the desert floor. And short-term rental rules that are completely different from Osoyoos town. A guide from someone who actually lives here."/>
+<meta property="og:url" content="https://anarchistliving.ca/"/>
+<meta property="og:type" content="website"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#1a1a18;
+  --stone:#3d3d38;
+  --mid:#7a7468;
+  --sand:#c8b89a;
+  --sand-light:#e8ddd0;
+  --cream:#f7f4ef;
+  --white:#ffffff;
+  --accent:#8b6f47;
+  --accent-dark:#6b5235;
+  --border:#e2ddd6;
+  --peer:#f0ede8;
+  /* Anarchist-specific — darker, more dramatic */
+  --night:#0d0d14;
+  --night-mid:#1a1a2e;
+  --star:#c8d4e8;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;color:var(--stone);background:var(--cream);overflow-x:hidden}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px 40px;
+  transition:background 0.4s,backdrop-filter 0.4s,padding 0.3s;
+}
+nav.scrolled{background:rgba(13,13,20,0.95);backdrop-filter:blur(12px);padding:14px 40px}
+.nav-logo{
+  font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:500;
+  color:var(--white);text-decoration:none;letter-spacing:0.03em;
+}
+.nav-links{display:flex;gap:28px;list-style:none}
+.nav-links a{
+  color:rgba(255,255,255,0.75);text-decoration:none;
+  font-size:0.78rem;font-weight:500;letter-spacing:0.08em;text-transform:uppercase;
+  transition:color 0.2s;
+}
+.nav-links a:hover{color:var(--sand)}
+.nav-cta{
+  background:var(--accent);color:var(--white);padding:9px 22px;border-radius:2px;
+  text-decoration:none;font-size:0.78rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;transition:background 0.2s;
+}
+.nav-cta:hover{background:var(--accent-dark)}
+
+/* HERO — full dark, dramatic */
+.hero{
+  position:relative;height:100vh;min-height:660px;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;background:var(--night);
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background-image:url('images/aurora-beams-pines-hero.jpg');
+  background-size:cover;background-position:center 30%;
+  opacity:0.55;
+  will-change:transform;
+}
+/* Subtle star-field overlay for atmosphere */
+.hero-stars{
+  position:absolute;inset:0;
+  background-image:
+    radial-gradient(1px 1px at 15% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 32% 55%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 48% 12%, rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px 1px at 63% 38%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px 1px at 78% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 88% 60%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px 1px at 22% 75%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 55% 80%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1px 1px at 70% 70%, rgba(255,255,255,0.3) 0%, transparent 100%),
+    radial-gradient(1px 1px at 92% 15%, rgba(255,255,255,0.5) 0%, transparent 100%);
+  pointer-events:none;
+}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(13,13,20,0.3) 0%,
+    rgba(13,13,20,0.5) 50%,
+    rgba(13,13,20,0.85) 100%
+  );
+}
+.hero-content{
+  position:relative;z-index:2;
+  text-align:center;padding:0 24px;max-width:860px;
+}
+.hero-elevation{
+  display:inline-flex;align-items:center;gap:10px;
+  margin-bottom:28px;
+  opacity:0;animation:fadeUp 0.8s 0.2s forwards;
+}
+.elev-line{width:40px;height:1px;background:var(--sand);opacity:0.5}
+.elev-text{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--sand);
+}
+.hero-headline{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.8rem,7vw,5.8rem);
+  font-weight:400;line-height:1.06;color:var(--white);
+  margin-bottom:24px;
+  opacity:0;animation:fadeUp 0.8s 0.4s forwards;
+  letter-spacing:-0.01em;
+}
+.hero-headline em{font-style:italic;color:var(--sand)}
+.hero-sub{
+  font-size:clamp(0.92rem,1.8vw,1.08rem);
+  color:rgba(255,255,255,0.65);font-weight:300;line-height:1.75;
+  max-width:580px;margin:0 auto 40px;
+  opacity:0;animation:fadeUp 0.8s 0.6s forwards;
+}
+.hero-actions{
+  display:flex;gap:14px;justify-content:center;flex-wrap:wrap;
+  opacity:0;animation:fadeUp 0.8s 0.8s forwards;
+}
+.btn-primary{
+  background:var(--accent);color:var(--white);padding:13px 30px;border-radius:2px;
+  text-decoration:none;font-size:0.82rem;font-weight:600;
+  letter-spacing:0.06em;text-transform:uppercase;
+  transition:background 0.2s,transform 0.15s;display:inline-block;
+}
+.btn-primary:hover{background:var(--accent-dark);transform:translateY(-1px)}
+.btn-ghost{
+  border:1.5px solid rgba(255,255,255,0.35);color:var(--white);
+  padding:13px 30px;border-radius:2px;text-decoration:none;
+  font-size:0.82rem;font-weight:500;letter-spacing:0.06em;text-transform:uppercase;
+  transition:border-color 0.2s,background 0.2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,0.7);background:rgba(255,255,255,0.06)}
+.hero-scroll{
+  position:absolute;bottom:32px;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,0.35);font-size:0.65rem;letter-spacing:0.14em;text-transform:uppercase;
+  opacity:0;animation:fadeUp 0.8s 1.1s forwards;
+}
+.scroll-line{
+  width:1px;height:36px;
+  background:linear-gradient(to bottom,rgba(255,255,255,0.3),transparent);
+  animation:pulse 2s ease-in-out infinite;
+}
+
+/* QUICK FACTS BAR */
+.facts-bar{
+  background:var(--ink);
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+.fact-item{
+  padding:26px 24px;text-align:center;
+  border-right:1px solid rgba(255,255,255,0.06);
+}
+.fact-item:last-child{border-right:none}
+.fact-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:2rem;font-weight:500;color:var(--sand);
+  display:block;line-height:1;margin-bottom:4px;
+}
+.fact-label{
+  font-size:0.63rem;font-weight:500;letter-spacing:0.1em;
+  text-transform:uppercase;color:rgba(255,255,255,0.32);
+}
+
+/* SHARED */
+.section{padding:96px 40px}
+.section-inner{max-width:1100px;margin:0 auto}
+.eyebrow{
+  font-size:0.68rem;font-weight:600;letter-spacing:0.18em;
+  text-transform:uppercase;color:var(--accent);
+  margin-bottom:14px;display:block;
+}
+.section-title{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2rem,4vw,3rem);font-weight:500;line-height:1.15;
+  color:var(--ink);margin-bottom:18px;
+}
+.section-title em{font-style:italic;color:var(--accent)}
+.body-text{font-size:0.95rem;line-height:1.82;color:var(--stone)}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity 0.7s,transform 0.7s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* WHAT IS IT */
+.what-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.what-img{
+  width:100%;aspect-ratio:4/5;border-radius:2px;
+  background-image:url('images/osoyoos-valley-anarchist-above.jpg');
+  background-size:cover;background-position:center;
+}
+.what-text p{margin-bottom:16px}
+.what-text p:last-child{margin-bottom:0}
+.location-pill{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--peer);border:1px solid var(--border);
+  border-radius:2px;padding:8px 14px;
+  font-size:0.72rem;font-weight:500;color:var(--mid);
+  margin-bottom:28px;
+}
+.location-pill strong{color:var(--ink)}
+
+/* DARK SKIES — standout section */
+.darksky-section{
+  background:var(--night);padding:96px 40px;position:relative;overflow:hidden;
+}
+/* Subtle radial glow for atmosphere */
+.darksky-section::before{
+  content:'';position:absolute;
+  top:-200px;left:50%;transform:translateX(-50%);
+  width:800px;height:800px;border-radius:50%;
+  background:radial-gradient(circle,rgba(100,120,200,0.06) 0%,transparent 70%);
+  pointer-events:none;
+}
+.darksky-section .eyebrow{color:var(--star);opacity:0.7}
+.darksky-section .section-title{color:var(--white)}
+.darksky-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:60px;align-items:center;margin-top:52px;
+}
+.darksky-img{
+  width:100%;aspect-ratio:1/1;border-radius:2px;
+  background-image:url('images/valley-view-wide-bothlakes.jpg');
+  background-size:cover;background-position:center;
+  position:relative;
+}
+.darksky-img-note{
+  position:absolute;bottom:16px;left:16px;right:16px;
+  font-size:0.65rem;color:rgba(255,255,255,0.4);
+  letter-spacing:0.06em;line-height:1.5;
+}
+.darksky-text p{font-size:0.93rem;line-height:1.82;color:rgba(255,255,255,0.62);margin-bottom:14px}
+.darksky-text p:last-child{margin-bottom:0}
+.darksky-callout{
+  margin-top:28px;padding:24px 28px;
+  background:rgba(200,212,232,0.06);
+  border:1px solid rgba(200,212,232,0.12);
+  border-radius:2px;
+}
+.darksky-callout p{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.25rem;font-weight:400;font-style:italic;
+  color:var(--star);line-height:1.5;
+}
+.darksky-note{
+  margin-top:10px;font-size:0.72rem!important;
+  color:rgba(200,212,232,0.4)!important;font-style:normal!important;
+}
+
+/* PHOTO BREAK — valley view */
+.valley-break{
+  height:500px;position:relative;overflow:hidden;
+}
+.valley-img{
+  position:absolute;inset:0;
+  background-image:url('images/aurora-over-lake-town.jpg');
+  background-size:cover;background-position:center 45%;
+}
+.valley-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(10,10,8,0.1) 0%,rgba(10,10,8,0.6) 100%);
+  display:flex;align-items:flex-end;padding:52px 80px;
+}
+.valley-caption{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(1.4rem,2.5vw,2rem);font-weight:400;font-style:italic;
+  color:var(--white);line-height:1.4;max-width:600px;
+}
+.valley-caption-sub{
+  font-family:'Inter',sans-serif;
+  font-size:0.72rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;
+  color:var(--sand);font-style:normal;margin-top:12px;display:block;
+}
+
+/* STR SECTION */
+.str-section{background:var(--peer);padding:96px 40px}
+.str-grid{
+  display:grid;grid-template-columns:3fr 2fr;
+  gap:60px;align-items:start;margin-top:52px;
+}
+.str-main p{font-size:0.93rem;line-height:1.82;color:var(--stone);margin-bottom:16px}
+.str-main p:last-child{margin-bottom:0}
+.str-callout{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:2px;padding:32px;
+}
+.str-callout h4{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.3rem;font-weight:600;color:var(--ink);margin-bottom:16px;
+}
+.str-items{display:flex;flex-direction:column;gap:14px}
+.str-item{display:flex;gap:12px;align-items:flex-start}
+.str-item-icon{font-size:0.95rem;flex-shrink:0;margin-top:2px}
+.str-item p{font-size:0.82rem;line-height:1.65;color:var(--stone)}
+.str-item strong{color:var(--ink)}
+.str-warning{
+  margin-top:20px;padding:16px;
+  background:rgba(139,111,71,0.08);
+  border:1px solid rgba(139,111,71,0.2);
+  border-radius:2px;
+  font-size:0.78rem;line-height:1.65;color:var(--stone);
+}
+.str-warning strong{color:var(--accent)}
+
+/* ACREAGE LIFESTYLE */
+.acreage-section{padding:96px 40px}
+.acreage-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:0;margin-top:52px;border:1px solid var(--border);
+}
+.acreage-card{
+  padding:40px 32px;border-right:1px solid var(--border);
+}
+.acreage-card:last-child{border-right:none}
+.acreage-icon{font-size:1.6rem;display:block;margin-bottom:14px}
+.acreage-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.35rem;font-weight:600;color:var(--ink);margin-bottom:10px;
+}
+.acreage-card p{font-size:0.87rem;line-height:1.72;color:var(--stone)}
+
+/* PAT LIVES HERE */
+.pat-section{
+  background:var(--ink);padding:96px 40px;
+}
+.pat-inner{
+  max-width:1100px;margin:0 auto;
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:80px;align-items:center;
+}
+.pat-img{
+  width:100%;aspect-ratio:4/5;border-radius:2px;
+  background-image:url('images/valley-view-wide-bothlakes.jpg');
+  background-size:cover;background-position:center top;
+  position:relative;
+}
+.pat-img-badge{
+  position:absolute;bottom:-16px;left:-16px;
+  background:var(--accent);color:var(--white);
+  padding:16px 20px;border-radius:2px;text-align:center;
+}
+.pat-img-badge .b-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.8rem;font-weight:500;display:block;line-height:1;
+}
+.pat-img-badge .b-label{
+  font-size:0.6rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;opacity:0.75;margin-top:3px;display:block;
+}
+.pat-section .eyebrow{color:var(--sand)}
+.pat-section .section-title{color:var(--white);margin-bottom:20px}
+.pat-text p{font-size:0.93rem;line-height:1.82;color:rgba(255,255,255,0.62);margin-bottom:14px}
+.pat-creds{
+  display:flex;flex-direction:column;gap:9px;
+  margin:24px 0 28px;padding:24px;
+  background:rgba(255,255,255,0.04);border-radius:2px;
+  border-left:3px solid var(--sand);
+}
+.pat-creds li{
+  font-size:0.8rem;line-height:1.6;color:rgba(255,255,255,0.6);
+  list-style:none;padding-left:18px;position:relative;
+}
+.pat-creds li::before{content:'✓';position:absolute;left:0;color:var(--sand);font-size:0.72rem}
+.pat-contact{font-size:0.82rem;color:rgba(255,255,255,0.38);margin-top:12px}
+.pat-contact a{color:var(--sand);text-decoration:none}
+
+/* GUIDES */
+.guides-section{padding:96px 40px;background:var(--peer)}
+.guides-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:14px;margin-top:44px;
+}
+.guide-card{
+  background:var(--white);border:1px solid var(--border);
+  border-radius:2px;padding:26px 22px 44px;
+  text-decoration:none;display:block;position:relative;
+  transition:border-color 0.2s,transform 0.2s,box-shadow 0.2s;
+}
+.guide-card:hover{
+  border-color:var(--sand);transform:translateY(-2px);
+  box-shadow:0 8px 28px rgba(0,0,0,0.07);
+}
+.guide-tag{
+  font-size:0.63rem;font-weight:600;letter-spacing:0.1em;
+  text-transform:uppercase;color:var(--accent);margin-bottom:8px;display:block;
+}
+.guide-card h3{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.15rem;font-weight:600;color:var(--ink);
+  margin-bottom:6px;line-height:1.3;
+}
+.guide-card p{font-size:0.8rem;line-height:1.62;color:var(--mid)}
+.guide-arrow{
+  position:absolute;bottom:18px;right:18px;
+  width:26px;height:26px;border-radius:50%;
+  background:var(--peer);display:flex;align-items:center;justify-content:center;
+  font-size:0.85rem;color:var(--accent);transition:background 0.2s,color 0.2s;
+}
+.guide-card:hover .guide-arrow{background:var(--accent);color:var(--white)}
+.guides-all{text-align:center;margin-top:32px}
+.guides-all a{
+  font-size:0.8rem;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;
+  color:var(--accent);text-decoration:none;
+  border-bottom:1.5px solid var(--sand-light);padding-bottom:2px;
+  transition:color 0.2s,border-color 0.2s;
+}
+.guides-all a:hover{color:var(--accent-dark);border-color:var(--accent)}
+
+/* FORM */
+.form-section{background:var(--night);padding:96px 40px}
+.form-inner{max-width:680px;margin:0 auto;text-align:center}
+.form-section .eyebrow{color:var(--star);opacity:0.7}
+.form-section .section-title{color:var(--white);margin-bottom:12px}
+.form-intro{font-size:0.95rem;line-height:1.72;color:rgba(255,255,255,0.45);margin:0 auto 44px}
+.contact-form{text-align:left}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.fg{display:flex;flex-direction:column;gap:5px;margin-bottom:14px}
+.fg label{font-size:0.68rem;font-weight:600;letter-spacing:0.1em;text-transform:uppercase;color:rgba(255,255,255,0.3)}
+.fg input,.fg select,.fg textarea{
+  background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+  border-radius:2px;padding:13px 15px;color:var(--white);
+  font-family:'Inter',sans-serif;font-size:0.88rem;outline:none;
+  transition:border-color 0.2s;-webkit-appearance:none;
+}
+.fg input::placeholder,.fg textarea::placeholder{color:rgba(255,255,255,0.15)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:rgba(200,212,232,0.4)}
+.fg select option{background:var(--night)}
+.fg textarea{resize:vertical;min-height:110px}
+.form-btn{
+  width:100%;background:var(--accent);color:var(--white);
+  border:none;padding:15px;border-radius:2px;
+  font-family:'Inter',sans-serif;font-size:0.83rem;font-weight:600;
+  letter-spacing:0.08em;text-transform:uppercase;
+  cursor:pointer;transition:background 0.2s;margin-top:6px;
+}
+.form-btn:hover{background:var(--accent-dark)}
+.form-note{font-size:0.7rem;color:rgba(255,255,255,0.2);text-align:center;margin-top:14px;line-height:1.6}
+
+/* FOOTER */
+footer{
+  background:rgba(0,0,0,0.4);border-top:1px solid rgba(255,255,255,0.05);
+  padding:32px 40px;display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:14px;
+}
+.footer-brand{font-family:'Cormorant Garamond',serif;font-size:0.95rem;font-weight:500;color:var(--sand)}
+.footer-links{display:flex;gap:22px;flex-wrap:wrap}
+.footer-links a{font-size:0.72rem;color:rgba(255,255,255,0.28);text-decoration:none;transition:color 0.2s}
+.footer-links a:hover{color:var(--sand)}
+.footer-legal{font-size:0.67rem;color:rgba(255,255,255,0.15);width:100%;text-align:center;margin-top:6px}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:0.3}50%{opacity:0.8}}
+
+@media(max-width:768px){
+  nav{padding:16px 20px}
+  nav.scrolled{padding:12px 20px}
+  .nav-links{display:none}
+  .section{padding:60px 20px}
+  .facts-bar{grid-template-columns:1fr 1fr}
+  .fact-item:nth-child(3){border-top:1px solid rgba(255,255,255,0.06)}
+  .fact-item:nth-child(4){border-top:1px solid rgba(255,255,255,0.06);border-right:none}
+  .what-grid{grid-template-columns:1fr}
+  .darksky-grid{grid-template-columns:1fr}
+  .valley-overlay{padding:32px 24px}
+  .valley-break{height:400px}
+  .str-grid{grid-template-columns:1fr}
+  .acreage-grid{grid-template-columns:1fr}
+  .acreage-card{border-right:none!important;border-bottom:1px solid var(--border)}
+  .acreage-card:last-child{border-bottom:none}
+  .pat-inner{grid-template-columns:1fr;gap:44px}
+  .pat-img-badge{bottom:-12px;left:12px}
+  .guides-grid{grid-template-columns:1fr}
+  .form-row{grid-template-columns:1fr}
+  footer{flex-direction:column;align-items:flex-start;padding:24px 20px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<nav id="mainNav">
+  <a href="/" class="nav-logo">Anarchist Mountain</a>
+  <ul class="nav-links">
+    <li><a href="#place">The Place</a></li>
+    <li><a href="#darksky">Dark Skies</a></li>
+    <li><a href="#str">STR Rules</a></li>
+    <li><a href="#acreage">Acreage Life</a></li>
+    <li><a href="#pat">About Pat</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Ask Pat</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg" id="heroBg"></div>
+  <div class="hero-stars"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-elevation">
+      <div class="elev-line"></div>
+      <span class="elev-text">Anarchist Mountain · Above Osoyoos BC · ~1,200m elevation</span>
+      <div class="elev-line"></div>
+    </div>
+    <h1 class="hero-headline">
+      You've heard of<br/>the Okanagan.<br/><em>You haven't heard of this.</em>
+    </h1>
+    <p class="hero-sub">Fifteen kilometres east of Osoyoos, the road climbs. The valley drops away. The sky opens up. And you're in a completely different world — acreage, silence, stars, and a view that makes people stop their cars on the way up.</p>
+    <div class="hero-actions">
+      <a href="#place" class="btn-primary">Explore Anarchist Mountain</a>
+      <a href="#contact" class="btn-ghost">Ask Pat a question</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<!-- FACTS BAR -->
+<div class="facts-bar">
+  <div class="fact-item"><span class="fact-num">~1,200m</span><span class="fact-label">Elevation above sea level</span></div>
+  <div class="fact-item"><span class="fact-num">15 km</span><span class="fact-label">East of Osoyoos town centre</span></div>
+  <div class="fact-item"><span class="fact-num">RDOS</span><span class="fact-label">Electoral Area C — not Osoyoos town</span></div>
+  <div class="fact-item"><span class="fact-num">Class 1</span><span class="fact-label">Dark Sky designation — one of BC's best</span></div>
+</div>
+
+<!-- WHAT IS IT -->
+<section class="section" id="place">
+  <div class="section-inner">
+    <div class="what-grid">
+      <div class="reveal">
+        <div class="what-img"></div>
+      </div>
+      <div class="reveal" style="transition-delay:0.15s">
+        <div class="location-pill">
+          <span>📍</span>
+          <span><strong>Hwy 3 East</strong> — 15km from Osoyoos, RDOS Electoral Area C</span>
+        </div>
+        <span class="eyebrow">What is Anarchist Mountain?</span>
+        <h2 class="section-title">Above the valley.<br/><em>In every sense.</em></h2>
+        <p class="body-text">Anarchist Mountain isn't a neighbourhood in Osoyoos. It's a separate community entirely — sitting on the plateau east of town along Highway 3, at roughly 1,200 metres elevation. The drive up takes 15 minutes. The world you arrive in feels nothing like what you left at the bottom.</p>
+        <p class="body-text">Properties here are acreage — typically 2 to 10+ acres. The landscape shifts from desert scrub to ponderosa pine forest and open grassland. The valley below unfolds in both directions. On a clear day you can see into Washington State.</p>
+        <p class="body-text">It sits within the RDOS (Regional District of Okanagan-Similkameen), Electoral Area C — completely outside Osoyoos town limits. That distinction matters more than most people realise, especially when it comes to short-term rental rules, taxation, and what you can do with your property.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DARK SKIES — signature section -->
+<section class="darksky-section" id="darksky">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">★ Dark Sky Country</span>
+      <h2 class="section-title" style="color:var(--white)">One of BC's darkest<br/><em style="color:var(--star)">skies at elevation.</em></h2>
+    </div>
+    <div class="darksky-grid">
+      <div class="darksky-img reveal" style="transition-delay:0.1s">
+        <div class="darksky-img-note">Aurora borealis photographed from Anarchist Mountain by Pat Miazga — this is a regular Tuesday night sky up here</div>
+      </div>
+      <div class="darksky-text reveal" style="transition-delay:0.2s">
+        <p>The South Okanagan already has some of the clearest skies in Canada — low precipitation, minimal cloud cover, and the dry desert air that comes with being in a rain shadow. Anarchist Mountain adds elevation to that equation.</p>
+        <p>At roughly 1,200 metres, you're above the valley floor haze and light pollution. Osoyoos town glows faintly below. To the east and north, there's essentially nothing. On a clear night, the Milky Way is visible with the naked eye. The kind of sky that makes people from cities genuinely stop and stand still.</p>
+        <p>This is not a marketing claim. The photos on this page were taken by Pat on his own property — on ordinary nights, with a phone. No special equipment. Just the sky that comes with living at this elevation.</p>
+        <div class="darksky-callout">
+          <p>"I've lived in a lot of places. I've never seen a sky like this on a regular Tuesday night."</p>
+          <p class="darksky-note">— Pat Miazga, on living at elevation on Anarchist Mountain</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- VALLEY BREAK -->
+<div class="valley-break">
+  <div class="valley-img" id="valleyBg"></div>
+  <div class="valley-overlay">
+    <div>
+      <p class="valley-caption">"On a clear night you can watch the northern lights dance over the lake while Osoyoos glows below. This is what Tuesday looks like up here."</p>
+      <span class="valley-caption-sub">— Aurora borealis over Osoyoos Lake, photographed from Anarchist Mountain by Pat Miazga</span>
+    </div>
+  </div>
+</div>
+
+<!-- STR RULES -->
+<section class="str-section" id="str">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">The STR distinction</span>
+      <h2 class="section-title">Short-term rental rules<br/><em>are completely different up here.</em></h2>
+      <p class="body-text" style="max-width:620px">This is one of the most misunderstood facts about Anarchist Mountain — and it changes the investment calculation significantly.</p>
+    </div>
+    <div class="str-grid reveal" style="transition-delay:0.15s">
+      <div class="str-main">
+        <p>In November 2024, the Town of Osoyoos voluntarily opted into BC's Short-Term Rental Accommodations Act (STRAA), requiring short-term rentals to be in a host's principal residence. That rule applies inside Osoyoos town limits.</p>
+        <p>Anarchist Mountain is in the RDOS Electoral Area C — it is not inside Osoyoos town limits, and the town's opt-in decision has no jurisdiction here. Electoral Areas C and H in the RDOS specifically opted out of the RDOS business licence bylaw that would have required compliance with the provincial principal residence requirement.</p>
+        <p>This is why you see operating vacation rental cottages, Airbnb properties, and vintner-stay-style accommodations on Anarchist Mountain that would not be permitted under the same rules in town.</p>
+        <p>The result: for buyers considering a revenue-generating property or a vacation home they want to rent out when not in use, Anarchist Mountain has meaningful flexibility that most of the Okanagan doesn't.</p>
+      </div>
+      <div>
+        <div class="str-callout">
+          <h4>What this means in practice</h4>
+          <div class="str-items">
+            <div class="str-item">
+              <span class="str-item-icon">✓</span>
+              <p><strong>Electoral Area C opted out</strong> of the RDOS business licence bylaw requiring principal residence compliance</p>
+            </div>
+            <div class="str-item">
+              <span class="str-item-icon">✓</span>
+              <p><strong>Operating vacation rentals exist</strong> on Anarchist Mountain legally — this is why</p>
+            </div>
+            <div class="str-item">
+              <span class="str-item-icon">✓</span>
+              <p><strong>Town STR rules don't apply</strong> — Osoyoos town's Nov 2024 opt-in has no jurisdiction here</p>
+            </div>
+            <div class="str-item">
+              <span class="str-item-icon">⚠</span>
+              <p><strong>RDOS rules still apply</strong> — properties still need a TUP or STR permit from RDOS</p>
+            </div>
+            <div class="str-item">
+              <span class="str-item-icon">⚠</span>
+              <p><strong>RDOS is reviewing</strong> rural STR policy since 2024 — rules can change</p>
+            </div>
+          </div>
+          <div class="str-warning">
+            <strong>Always verify directly with RDOS Development Services</strong> before purchasing any property with STR intent. Rules are subject to change and property-specific permits vary. Pat can walk you through what to ask and who to call.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACREAGE LIFESTYLE -->
+<section class="acreage-section section" id="acreage">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">Acreage living</span>
+      <h2 class="section-title">Space. Quiet. Views.<br/><em>A different pace entirely.</em></h2>
+      <p class="body-text" style="max-width:600px">This isn't a subdivision. Properties on Anarchist Mountain are typically 2–10+ acres — horses, gardens, outbuildings, room to breathe. The things that are impossible to find in the valley below.</p>
+    </div>
+    <div class="acreage-grid reveal" style="transition-delay:0.15s">
+      <div class="acreage-card">
+        <span class="acreage-icon">🌄</span>
+        <h3>The view</h3>
+        <p>South-facing properties look straight down the valley into Osoyoos and across to Washington State. The kind of view that becomes the first thing visitors notice and the last thing you stop appreciating. Sunrise on the benchlands, sunset over the lake.</p>
+      </div>
+      <div class="acreage-card">
+        <span class="acreage-icon">🌲</span>
+        <h3>The land</h3>
+        <p>Ponderosa pine, open grassland, rocky outcroppings. Properties range from cleared pasture to forested acreage. Most have wells and septic — proper inspections matter. The land here is genuinely diverse and each property tells a different story.</p>
+      </div>
+      <div class="acreage-card">
+        <span class="acreage-icon">🛣️</span>
+        <h3>The access</h3>
+        <div style="width:100%;height:140px;border-radius:2px;margin-bottom:12px;background-image:url('images/hwy97-desert-road-blusky.jpg');background-size:cover;background-position:center 55%;"></div>
+        <p>Highway 3 runs through. Osoyoos is 15 minutes down the mountain — grocery, healthcare, restaurants, wine country. Mt Baldy ski hill is ~35 minutes east. Apex Mountain near Penticton is ~90 minutes. You get the space and quiet without sacrificing proximity. AWD or 4WD recommended for winter. Starlink is the reliable internet solution for most properties.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAT LIVES HERE -->
+<section class="pat-section" id="pat">
+  <div class="pat-inner">
+    <div class="pat-img reveal">
+      <div style="width:100%;height:100%;background-image:url('images/pat-miazga-portrait.jpg');background-size:cover;background-position:center 15%;border-radius:2px;"></div>
+      <div class="pat-img-badge">
+        <span class="b-num">3</span>
+        <span class="b-label">Years on the mountain</span>
+      </div>
+    </div>
+    <div class="reveal" style="transition-delay:0.15s">
+      <span class="eyebrow">Pat lives here</span>
+      <h2 class="section-title" style="color:var(--white)">Not just sells here.<br/><em style="color:var(--sand)">Actually lives here.</em></h2>
+      <p class="pat-text">Pat Miazga relocated his family from the Lower Mainland to Anarchist Mountain nearly three years ago. He knows this road in January. He knows which properties have water pressure issues, which ones lose cell service, and which views are as good as they look in the listing photos — and which aren't.</p>
+      <p class="pat-text">He also holds a BC-wide real estate license — meaning he can handle the sale of your existing property anywhere in BC and your Anarchist Mountain purchase in a single transaction. No handoffs. No agents who've never driven this road.</p>
+      <ul class="pat-creds">
+        <li>Lives on Anarchist Mountain — knows it in every season</li>
+        <li>BC-wide license — handles your current sale + Anarchist Mountain purchase</li>
+        <li>Commercial construction background — evaluates properties others miss</li>
+        <li>RE/MAX Hall of Fame + MLS® Medallion Club</li>
+        <li>22 years BC real estate experience</li>
+        <li>English + Polish</li>
+      </ul>
+      <a href="#contact" class="btn-primary" style="display:inline-block">Start the conversation</a>
+      <p class="pat-contact" style="margin-top:14px">
+        <a href="tel:6045625982">604-562-5982</a> &nbsp;·&nbsp;
+        <a href="https://patmiazga.com" target="_blank" rel="noopener">patmiazga.com</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- GUIDES -->
+<section class="guides-section" id="guides">
+  <div class="section-inner">
+    <div class="reveal">
+      <span class="eyebrow">Free guides</span>
+      <h2 class="section-title">Go deeper on<br/><em>what matters</em></h2>
+      <p class="body-text" style="max-width:560px">Key guides for anyone seriously considering Anarchist Mountain or the South Okanagan.</p>
+    </div>
+    <div class="guides-grid reveal" style="transition-delay:0.1s">
+      <a href="https://patmiazga.com/investment-property-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">STR + Investment</span>
+        <h3>Investment Property & STR Guide</h3>
+        <p>The full picture on short-term rental rules — inside Osoyoos, on Anarchist Mountain, and what RDOS Electoral Area C means for buyers.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="https://patmiazga.com/inspection-well-septic-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">Due Diligence</span>
+        <h3>Well Water & Septic Guide</h3>
+        <p>Most Anarchist Mountain properties have wells and septic. What to inspect, what to ask, and what to walk away from.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="https://patmiazga.com/climate-insurance-risk-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">Due Diligence</span>
+        <h3>Climate & Insurance Risk</h3>
+        <p>Wildfire risk, defensible space, and insurance considerations for elevated rural properties in the South Okanagan.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="https://patmiazga.com/relocation-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">Relocation</span>
+        <h3>South Okanagan Relocation Guide</h3>
+        <p>The full relocation picture — timeline, logistics, selling your current home, and what life looks like after.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="https://patmiazga.com/dripa-property-rights-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">Legal</span>
+        <h3>DRIPA & Property Rights</h3>
+        <p>What BC's Indigenous rights legislation means for property buyers in the South Okanagan region.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+      <a href="https://patmiazga.com/unpermitted-work-guide.html" class="guide-card" target="_blank" rel="noopener">
+        <span class="guide-tag">Due Diligence</span>
+        <h3>Unpermitted Work Guide</h3>
+        <p>Rural acreage properties often have outbuildings and additions without permits. Know your exposure before removing subjects.</p>
+        <div class="guide-arrow">→</div>
+      </a>
+    </div>
+    <div class="guides-all reveal">
+      <a href="https://patmiazga.com" target="_blank" rel="noopener">View all 22 guides at patmiazga.com →</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="form-section" id="contact">
+  <div class="form-inner">
+    <span class="eyebrow">★ Get in touch</span>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:12px">Seriously considering<br/><em style="color:var(--sand)">Anarchist Mountain?</em></h2>
+    <p class="form-intro">Pat lives here. Ask him anything — what properties are actually like at this elevation, which roads are rough in winter, what the STR permit process looks like, what the view is worth. No pressure, no commitment.</p>
+    <form class="contact-form" action="https://formspree.io/f/xzdqkvra" method="POST">
+      <input type="hidden" name="_subject" value="anarchistliving.ca — Anarchist Mountain Inquiry"/>
+      <input type="hidden" name="source" value="anarchistliving.ca"/>
+      <div class="form-row">
+        <div class="fg"><label>First Name</label><input type="text" name="first_name" placeholder="Jane" required/></div>
+        <div class="fg"><label>Last Name</label><input type="text" name="last_name" placeholder="Smith" required/></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Email</label><input type="email" name="email" placeholder="jane@email.com" required/></div>
+        <div class="fg"><label>Phone (optional)</label><input type="tel" name="phone" placeholder="604-555-0100"/></div>
+      </div>
+      <div class="fg">
+        <label>Where are you coming from?</label>
+        <select name="moving_from">
+          <option value="">Select your city / region</option>
+          <option>Vancouver / Lower Mainland</option>
+          <option>Victoria / Vancouver Island</option>
+          <option>Calgary</option>
+          <option>Edmonton</option>
+          <option>Alberta / Other</option>
+          <option>Saskatchewan</option>
+          <option>Manitoba</option>
+          <option>Ontario</option>
+          <option>Quebec</option>
+          <option>Other</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>What are you interested in?</label>
+        <select name="interest">
+          <option value="">Select</option>
+          <option>Primary residence on acreage</option>
+          <option>Vacation / recreational property</option>
+          <option>Investment / short-term rental</option>
+          <option>Retirement property</option>
+          <option>Just exploring — early research</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>What's on your mind?</label>
+        <textarea name="message" placeholder="Ask me anything — property types, road conditions in winter, what the STR permit process actually looks like, specific listings you've seen..."></textarea>
+      </div>
+      <button type="submit" class="form-btn">Send to Pat →</button>
+      <p class="form-note">Pat responds personally within one business day. Your information is never shared.</p>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:var(--night)">
+  <span class="footer-brand">anarchistliving.ca</span>
+  <div class="footer-links">
+    <a href="https://patmiazga.com/anarchist-mountain.html" target="_blank" rel="noopener">Anarchist Mountain Guide</a>
+    <a href="https://patmiazga.com" target="_blank" rel="noopener">patmiazga.com</a>
+    <a href="https://osoyoosliving.ca" target="_blank" rel="noopener">osoyoosliving.ca</a>
+    <a href="https://southokanaganmove.ca" target="_blank" rel="noopener">southokanaganmove.ca</a>
+    <a href="tel:6045625982">604-562-5982</a>
+  </div>
+  <p class="footer-legal">Pat Miazga, REALTOR® · RE/MAX All Points Realty · BC License since 2004 · This site is not affiliated with RE/MAX International.</p>
+</footer>
+
+<script>
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', () => {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, {passive:true});
+
+const heroBg = document.getElementById('heroBg');
+const valleyBg = document.getElementById('valleyBg');
+window.addEventListener('scroll', () => {
+  const y = window.scrollY;
+  if(y < window.innerHeight) {
+    heroBg.style.transform = `translateY(${y * 0.22}px)`;
+  }
+}, {passive:true});
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add('visible');observer.unobserve(e.target)}
+  });
+}, {threshold:0.1, rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
